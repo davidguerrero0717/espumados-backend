@@ -207,6 +207,3 @@ function deleteFields() {
     $('#exampleModal').modal('toggle');
 
 }
-
-
-

@@ -173,3 +173,13 @@ function deleteRole(id) {
     
 }
 
+
+function deleteFieldsRoles() {
+
+    $('#nombreInput').val('');
+    $('#nombrePantallaInput').val('');
+
+    $('#exampleModal').modal('toggle');
+
+}
+
