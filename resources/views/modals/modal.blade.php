@@ -8,6 +8,7 @@
         <div class="modal-body">
             <form method="POST">
                 @csrf
+                @method('PUT')
                 <div class="mb-3">
                   <label for="nombresLabel" class="form-label">Nombres</label>
                   <input type="text" class="form-control" id="nombresLabel" name="nombresLabel" aria-describedby="namesHelp">

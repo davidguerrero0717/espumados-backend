@@ -83,7 +83,7 @@ class UsersController extends Controller
             'nombre'     =>   $request->names,
             'cedula'     =>   $request->cedula,
             'email'      =>   $request->email,
-            'password'   =>   $request->password,
+            'password'   =>   bcrypt($request->password),
             'roles_id'   =>   $request->roles,
         ]);
 
