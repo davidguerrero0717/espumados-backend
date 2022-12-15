@@ -17,7 +17,7 @@
           </div>
           <div class="mb-3">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" onclick="processData();">Guardar</button>
+            <button type="button" class="btn btn-primary" onclick="processDataRoles();">Guardar</button>
           </div>
         </form>
       </div>
