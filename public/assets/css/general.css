@@ -1,0 +1,38 @@
+#users {
+    background-color:  #DA7415;
+}
+
+#roles {
+    background-color:  #DA7415;
+}
+
+#user-tab {
+    color: black;
+}
+
+#roles-tab {
+    color: black;
+}
+
+.btn-espumados {
+    background-color: #DA7415;
+    color: white;
+}
+
+.btn-espumados:hover {
+    background-color: #DF842F;
+    color: white;
+}
+
+.table-espumados {
+    background-color: #DF842F;
+    text-align: center;
+}
+
+#tableUSers {
+    text-align: center;
+}
+
+#rolTable {
+    text-align: center;
+}
