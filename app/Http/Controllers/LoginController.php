@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RolesPostRequest;
-use App\Models\Roles;
-use Carbon\Carbon;
+use App\Http\Requests\StoreUserPostRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
-class RolesController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showAll()
+    public function index()
     {
-        $roles = Roles::get();
-        return response()->json($roles);
+        return view('login.login');
+    }
+
+    public function forgotPassword()
+    {
+        return view('login.forgotPassword');
+    }
+
+    public function registerUser()
+    {
+        return view('login.registerUser');
     }
 
     /**
@@ -25,9 +34,19 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(StoreUserPostRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $storeUsers = new User;    
+        $storeUsers->nombre   = $request->names;    
+        $storeUsers->cedula   = $request->cedula;    
+        $storeUsers->email    = $request->email;    
+        $storeUsers->password = bcrypt($request->password);    
+        $storeUsers->roles_id = $request->rol;
+        $storeUsers->save();
+        
+        return response()->json("Usuario almacenado con exito!!");
+
     }
 
     /**
@@ -38,19 +57,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validated();
-
-        $storeUser = new Roles;
-        $storeUser->nombre = $request->name;
-        $storeUser->nombre_en_pantalla = $request->nameScreen;
-        $storeUser->save();
-
-        $resp = [
-            'resp' => 'Rol creado con exito',
-            'code' => '1',
-        ];
-
-        return response()->json($resp);
+        //
     }
 
     /**
@@ -72,8 +79,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = Roles::find($id);
-        return response()->json($role);
+        //
     }
 
     /**
@@ -85,18 +91,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Roles::where('id', $id)->update([
-            'nombre'              =>   $request->name,
-            'nombre_en_pantalla'  =>   $request->nameScreen,
-            'updated_at'          =>   Carbon::now(),
-        ]);
-
-        $resp = [
-            'resp' => 'El usuario fue actualizado',
-            'cod' => '1',
-        ];
-
-        return response()->json($resp);
+        //
     }
 
     /**
@@ -107,9 +102,6 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        $role = Roles::findOrFail($id);
-        $role->delete();
-
-        return response()->json("Rol eliminado");
+        //
     }
 }

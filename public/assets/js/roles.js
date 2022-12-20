@@ -158,12 +158,12 @@ function deleteRole(id) {
                     $(`#fatherRol${id}`).remove();
                 })
                 .catch(function (error) {
-                      Swal.fire(error, '', 'info')
+                    console.log(error);
                 })
 
             })
             .catch(function (error) {
-                console.log(error);
+                Swal.fire("Este rol se esta utilizando, por esta razón no se puede eliminar!!", '', 'error');
             })
         
         } else if (result.isDenied) {

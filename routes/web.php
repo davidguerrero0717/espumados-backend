@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,16 @@ use App\Http\Controllers\RolesController;
 |
 */
 
+Route::controller(LoginController::class)->group(function() {
+    Route::get('/', 'index');
+    Route::get('/password', 'forgotPassword')->name('password');
+    Route::get('/register', 'registerUser')->name('register');
+    Route::post('/createUser', 'create')->name('createUser');
+});
+
 // Rutas Usuarios
 Route::controller(UsersController::class)->group(function() {
-    Route::get('/', 'index')->name('home');
+    Route::get('/home', 'index')->name('home');
     Route::post('/created', 'create')->name('created');
     Route::post('/users', 'showUsers')->name('users');
     Route::post('/showOne/{id}', 'show')->name('showOne');
