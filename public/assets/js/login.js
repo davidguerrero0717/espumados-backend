@@ -26,19 +26,9 @@ function storeUsers() {
     data.append('email',    $('#emailAddress').val());
     data.append('rol',      $('#rolUser').val());
 
-    localStorage.setItem('email',    JSON.stringify($('#emailAddress').val()));
-    localStorage.setItem('password', JSON.stringify($('#passwordUser').val()));
-   
-
     axios.post('createUser', data)
     .then(function (response) {
-        
         deleteFieldsUser();
-        $('#form2Example17').val(JSON.parse(localStorage.getItem('email')));
-        $('#form2Example27').val(JSON.parse(localStorage.getItem('password')));
-        Swal.fire(response.data);
-
-        window.location.href = '/';
     })
     .catch(function (error) {
         console.log(error);
@@ -55,3 +45,18 @@ function deleteFieldsUser() {
     $('#rolUser').val('');
 
 }
+
+// function validateCredentials() 
+// {
+//     let data = new FormData();
+//     data.append('user',       $('#form2Example17').val());
+//     data.append('password',   $('#form2Example27').val());
+
+//     axios.post('validate', data)
+//     .then(function (response) {
+//         console.log(response);
+//     })
+//     .catch(function (error) {
+//         console.log(error);
+//     })
+// }

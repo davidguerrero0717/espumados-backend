@@ -9,23 +9,25 @@
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Recupere su contraseña</h3>
 
-              <form>
-  
+              <form method="GET" action="{{ route('send-email') }}">
+
+                @csrf
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                      <input type="email" id="emailForget" class="form-control form-control-lg rounded-pill shadow-input" />
+                      <input type="email" id="emailForget" name="emailForget" class="form-control form-control-lg rounded-pill shadow-input" />
                       <label class="form-label" for="emailForget">Correo</label>
                     </div>
                   </div>
                 </div>
   
                 <div class="mt-4 pt-2">
-                  <input class="btn btn-primary btn-lg button-class-espumados" type="button" value="Enviar" />
+                  <input class="btn btn-primary btn-lg button-class-espumados" type="submit" value="Enviar" />
                   <input class="btn btn-primary btn-lg button-class-espumados" type="button" onclick="javascript:history.back();" value="Cancelar" />
                 </div>
   
               </form>
+
             </div>
           </div>
         </div>

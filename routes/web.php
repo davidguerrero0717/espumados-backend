@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RetrieveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,12 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::controller(LoginController::class)->group(function() {
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('login');
     Route::get('/password', 'forgotPassword')->name('password');
     Route::get('/register', 'registerUser')->name('register');
     Route::post('/createUser', 'create')->name('createUser');
+    Route::post('/validate', 'validateCredentials')->name('validate');
+    // Route::get('/log-out', 'logOutUser')->name('log-out');
 });
 
 // Rutas Usuarios
@@ -41,6 +44,8 @@ Route::controller(RolesController::class)->group(function() {
     Route::post('updateRole/{role}', 'update')->name('updateRole');
     Route::post('deleteRol/{role}', 'destroy')->name('deleteRol');
 });
+
+Route::get('send-email', [RetrieveController::class, 'indexEmail'])->name('send-email');
 
 
 

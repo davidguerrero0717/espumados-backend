@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserPostRequest;
+use App\Http\Requests\ValidateCredentialsPostRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
@@ -41,11 +44,12 @@ class LoginController extends Controller
         $storeUsers->nombre   = $request->names;    
         $storeUsers->cedula   = $request->cedula;    
         $storeUsers->email    = $request->email;    
-        $storeUsers->password = bcrypt($request->password);    
+        $storeUsers->password = Hash::make($request->password);    
         $storeUsers->roles_id = $request->rol;
         $storeUsers->save();
-        
-        return response()->json("Usuario almacenado con exito!!");
+
+        Auth::user($storeUsers); 
+        return redirect()->route('home');
 
     }
 
@@ -55,9 +59,19 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function validateCredentials(Request $request)
     {
-        //
+        // $password = Hash::make($request->password);
+        $password = '$2y$10$ABEVueLRGDUTjOQDhnYuBOmlE35Z.ekJgXutmUo2PNVCa9IfHt98S';
+        $credentials =  [ 'email' => $request->user, 'password' => $password ];
+        // $remember = ($request->has('remember') ? true : false);
+        Log::info($credentials);
+        if (Auth::attempt($credentials)) 
+        {
+            return redirect()->route('home');
+        } 
+
+        return redirect()->route('login');
     }
 
     /**

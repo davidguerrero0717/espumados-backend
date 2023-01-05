@@ -45,3 +45,21 @@
         border-bottom-right-radius: .3rem;
     }
 }
+
+
+.titleEmail {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    color: black;
+    font-weight: bolder;
+}
+
+.paragraph-email {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 12px;
+    color: black;
+}
+
+.marquer {
+    background-color: cyan;
+}

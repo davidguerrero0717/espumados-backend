@@ -26,7 +26,7 @@
     </head>
     <body>
         
-        @include('login.login')
+        @include('dashboard.home')
         
 
         {{-- Jquery Library --}}
